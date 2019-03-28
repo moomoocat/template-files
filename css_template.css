@@ -1,0 +1,415 @@
+/* CHANGE INLINE ELEMENTS TO BLOCK */
+
+header, nav, main, article, aside, section, footer, video, audio, figure {
+display: block; 
+}
+
+------------------------
+
+/* ZERO-OUT BROWSER DEFAULT MARGINS/PADDING */
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+------------------------
+
+
+/* REPONSIVE CODING */
+
+/* for responsive media */
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+/* for entire page */
+
+body {
+           max-width: 1000px; 
+           width: 85%;
+           margin: 1em auto 0;
+           font: 90%/1.5 Georgia, Times, serif;
+        }
+ 
+------------------------
+
+/* ADD PADDING ON SIDES OF WEBSITE or ELEMENT */
+
+main {
+	/* name of container */
+	padding: 20px 20px;
+}
+
+------------------------
+
+/* TO AVOID ADJUSTING PADDING/BORDERS -- and avoid math calculations */
+
+* {
+	box-sizing: border-box;
+}
+
+------------------------
+/* SHORTHAND FONT PROPERTY -- NO FONT COLOR
+  font: font-style font-variant font-weight font-size/line-height font-family;
+*/
+
+body {
+  font: italic small-caps normal 13px/150% Arial, Helvetica, sans-serif;
+}
+------------------------
+
+/* NAV PSEUDO CLASS STYLES */
+/* unvisited link */
+a:link {
+  color: #FF0000;
+}
+
+/* visited link */
+a:visited {
+  color: #00FF00;
+}
+
+/* mouse over link */
+a:hover {
+  color: #FF00FF;
+}
+
+/* selected link */
+a:active {
+  color: #0000FF;
+}
+-------------------------
+
+/* SIMPLEST RESPONSIVE NAVIGATION */
+
+.navigation {
+	background-color: #dedede;
+}
+
+.navigation ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.navigation li {
+	display: inline-block;
+	margin: 0 .5em;
+}
+
+.navigation li a {
+	display: block;
+	padding: .5em;
+}
+
+/* RESPONSIVE NAVIGATION: 
+GRID FORMAT LAYOUT */
+
+/* mobile first styles */
+.navigation ul {
+	width: 100%;
+}
+
+.navigation li {
+	width: 50%;
+	float: left;
+	margin: 0;
+}
+
+.navigation li a {
+	border-bottom: solid 1px #ccc;
+	display: block;
+	padding: .5em;
+}
+
+.navigation li:nth-last-of-type(odd) a {
+	border-right: solid 1px #ccc;
+}
+
+/* larger screen styles */
+
+@media screen and (min-width: 720px) {
+	.naviation ul {
+		height: 2.6em; /* to get back gray background */
+	}
+	
+	.navigation li {
+		float: none;
+		width: initial!important; /* to fit length of content back to default value */ 
+		display: inline-block;
+		margin: 0 .25em;
+	}
+	
+	.navigation li:nth-last-of-type(odd) a {
+		border-right: none; /* delete lines on right of nav menu */ 
+	}
+	
+	.navigation li a {
+		border-bottom: none; /* delete lines on bottom of nav menu */
+		padding: .5em .25em; /* to fit entire menu on smaller screens */
+	}
+}
+
+/* Finally, add this to html to give space between content underneath navigation */
+
+<div class="clearIt"></div>
+
+/* Then in styles clear the floats */
+
+.clearIt {
+	clear: both;
+}
+
+/* and add margin to content underneath the navigation */
+
+.contentUnderneathNav {
+	margin-top: .75em;
+}
+--------------------
+
+/* MAKE A HAMBURGER MENU IN CSS -- does fail in some older mobile devices so we are "faking out" this through the "checkbox hack." */
+
+ In HTML, do the "checkbox hack" method. Select the entire nav tag and cut it. Type in this:<div id="naviation">
+		<input type="checkbox" id="toggle">
+		<label for="toggle">Menu</label>
+		<nav class="mainNav">
+		<ul>
+			<li><a href="#"></a>Home</li>
+			<li><a href="#"></a>General Facts</li>
+			<li><a href="#"></a>Shark Types</li>
+			<li><a href="#"></a>Conservation</li>
+			<li><a href="#"></a>Contact Us</li>
+			<li><a href="#"></a>How to Help</li>
+		</ul>
+		</nav>
+	</div>
+
+In CSS mobile version, 
+/* HAMBURGER MENU CODING */
+	
+nav.mainNav {
+	background-color: #dedede;
+}
+
+.mainNav ul {
+	list-style-type: none;
+}
+
+.mainNav li {
+	border-bottom: solid 1px #999;
+}
+
+.mainNav li a {
+	/* make links the entire width and easier to user to hit with fingers */
+	display: block;
+	padding: .5em;
+}
+
+#navigation nav {
+	height: 0;
+	/* hides nav tag until user selects the box */
+	overflow: hidden;
+}
+
+body {
+	-webkit-animation: bugfix infinite 1s;
+}
+/* this is very important to work in all webkit browsers that usually wouldn't support this */
+@webkit-keyframes bugfix {
+	from {padding: 0;}
+	to {padding: 0;}
+}
+/* this is very important to work in all webkit browsers that usually wouldn't support this*/
+#navigation input[type=checkbox] {
+	position: absolute;
+	top: -999em;
+	left: -999em;
+}
+
+#navigation label {
+	display: block;
+	background: url(../images/nav-icon.png) no-repeat right center;
+	position: relative;
+	top: -100px;
+	right: 8px;
+	text-indent: -999em;
+	/* to turn arrow pointer into a hand image */
+	cursor: pointer;
+	user-select: none;
+}
+/* if you check hamburger, nav menu appears and when you check again, menu disappears */
+#navigation input[type=checkbox]:checked  ~ nav {
+	height: auto;
+	overflow: hidden;
+}
+
+-------------------------
+
+
+/* BACKGROUND COLOR ON ENTIRE SITE -- USE EITHER */
+
+html {
+	background-color: white;
+}
+
+body {
+	background-color: white;
+}
+------------------------
+
+/* CONTENT WIDTH: Increases or decreases spacing around edges of page */
+
+body {
+	width: 80%; /*higher the number the more content will be included */
+	margin: 0 auto; /* center */
+}
+
+------------------------
+
+/* FONT SIZING TRICK */
+
+body {
+	font-size: 10px; /* now all fonts sized after this will be in ems or 1em is 10px, 1.5em is 15px, 2em is 20px, etc.) */
+}
+
+------------------------
+/* CREATE COLUMNS THAT LINE UP AT BOTTOM WITH FOOTER */
+
+#NAME OF CONTAINER BEHIND SECOND COLUMN {
+		 background-image: url(image/1px_deep_aside_background_color.png);
+}
+
+/* CREATE FAUX COLUMNS TO HELP WITH TEXT ADDITION AND OVERFLOW */
+
+.sidebar, .container /*( make two columns */ {
+			float: left;
+			width: 50%;
+			/* create faux columns */
+		    padding-bottom: 99999px;
+		    margin-bottom: -99999px;
+			}
+
+/* TO STOP UNENDING COLUMNS */
+
+/* MAKE FOOTER STAY AT BOTTOM OF PAGE WHEN CRITTERS JUMP TO ONE ROW */
+
+footer {
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+} 
+
+
+-----------------------			
+
+/* GOES TO TWO-COLUMN FLEXBOX LAYOUT */
+
+@media screen and (min-width: 760px){
+	#wrapper {
+		display: flex;
+		flex-flow: row wrap;
+	}
+
+	header, footer {
+		flex: 1 100%;
+	}
+
+	article {
+		flex: 2;
+	}
+
+	aside {
+		flex: 1;
+	}
+
+	#wrapper h1 {
+		font-size: 4em;
+		text-align: left;
+	}
+
+	figcaption {
+		text-align: right;
+	}
+
+	aside h1 {
+		max-width: 70%;
+	}
+
+	aside p {
+		padding-right: 30px
+	}
+}
+
+------------------------
+
+/* CONTENT WIDTH STOPS AT 960px */
+@media screen and (min-width: 960px){
+
+	#wrapper {
+		max-width: 960px;
+		margin: auto;
+	}
+
+	aside h1 {
+		max-width: 70%;
+	}
+}
+
+----------------------------------
+
+/* MEDIA QUERIES */
+
+@media screen and (min-width: 530px) {
+            .image1 {
+                float: right;
+	/* MAKE PHOTO HALF COLUMN */
+                width: 50%;
+/* MAKE PHOTO NEVER SHRINK SMALLER THAN */
+                min-width: 300px;
+            }
+        }
+
+
+@media screen and (min-width: 750px) {
+            .col1 {
+                float: left;
+                width: 60%;
+                margin-right: 5%;
+            }
+            .col2 {
+                width: 35%;
+                float: left;
+            }
+        }
+@media screen and (max-width: 120px) {
+            body {
+                background-color: red;
+            }
+        } 
+
+------------------------
+
+/* CODING SPRITES */
+
+#critters li {
+	list-style-type: none;
+	padding: 10px;
+	margin: 10px 10px 0;
+	display: inline-block;
+	border: 1px solid #333;
+	min-width: 150px;
+	min-height: 150px;
+	background-image: url(../images/all_sea_creatures.gif)
+}
+
+#horse {
+	background-position: 0px 0px;
+}
+
+#horse:hover {
+	background-position: -150px 0px;
+}
+
+
